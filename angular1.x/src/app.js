@@ -8,7 +8,7 @@ function demoCtrl($scope, $http) {
 	$scope.taskList = [];
 
 	$http({
-		url: '/static/data.json',
+		url: '/todomvc-demos/static/data.json',
 		method: 'get'
 	}).then(function (res) {
 
