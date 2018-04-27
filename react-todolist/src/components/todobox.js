@@ -1,7 +1,7 @@
 import React from 'react';
 import TodoList from './todolist';
 import AddTodoItem from './addtodoitem';
-import {Button,Icon,Row,Col} from 'antd';
+import { Button, Icon, Row, Col } from 'antd';
 export default class TodoBox extends React.Component {
   constructor(props) {
     super(props)
@@ -31,7 +31,7 @@ export default class TodoBox extends React.Component {
     this.handleAddTodoItem = this.handleAddTodoItem.bind(this);
   }
   generateGUID() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0,
         v = c == 'x' ? r : (r & 0x3 | 0x8)
       return v.toString(16)
@@ -44,40 +44,33 @@ export default class TodoBox extends React.Component {
         item.complete = item.complete === "true" ? "false" : "true"
       }
     }
-    this.setState({data})
+    this.setState({ data })
   }
   handleTaskDelete(taskId) {
     let data = this.state.data
     data = data.filter(task => task.id !== taskId)
-    this.setState({data})
+    this.setState({ data })
   }
-  handleAddTodoItem(task){
-    let newItem={
-      id:this.generateGUID(),
+  handleAddTodoItem(task) {
+    let newItem = {
+      id: this.generateGUID(),
       task,
-      complete:"false"
+      complete: "false"
     }
-    let data=this.state.data
-    data=data.concat([newItem])
-    this.setState({data})
+    let data = this.state.data
+    data = data.concat([newItem])
+    this.setState({ data })
   }
   render() {
     return (
       <div>
         <div className="well">
           <h1 className="text-center">React TodoList</h1>
-          <TodoList data={this.state.data} toggleComplete={this.handleToggleComplete} deleteTask={this.handleTaskDelete}/>
-          <AddTodoItem saveNewItem={this.handleAddTodoItem}/>
+          <TodoList data={this.state.data} toggleComplete={this.handleToggleComplete} deleteTask={this.handleTaskDelete} />
+          <AddTodoItem saveNewItem={this.handleAddTodoItem} />
         </div>
-        <Row>
-          <Col span={12}>
-          </Col>
-          <Col span={12}>
-            <Button className="pull-left"><Icon type="user" />   <a href="http://axuebin.com">薛彬</a></Button>
-            <Button className="pull-right"><Icon type="github" />   <a href="https://github.com/axuebin">axuebin</a></Button>
-          </Col>
-        </Row>
-        </div>
+
+      </div>
     )
   }
 }

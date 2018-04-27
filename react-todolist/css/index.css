@@ -7,7 +7,7 @@ html, body {
   overflow: hidden;
 }
 
-#example {
+#todoapp {
   width: 400px;
   border-radius: 5px;
   margin: 0 auto;
@@ -17,7 +17,6 @@ html, body {
 .list-group{
   margin-top: 10px
 }
-
-.addtodoitem button{
+#todoapp .addtodoitem button{
   margin:10 15 0 0;
 }

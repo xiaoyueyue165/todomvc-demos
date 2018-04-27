@@ -3,7 +3,7 @@ var path = require('path');
 
 module.exports = {
   context: __dirname + '/react/src',
-  entry: "./js/index.js",
+  entry: "./index.js",
   module: {
     loaders: [
       {
