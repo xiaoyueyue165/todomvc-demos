@@ -45,6 +45,7 @@ export default class TodoBox extends React.Component {
       }
     }
     this.setState({ data })
+   
   }
   handleTaskDelete(taskId) {
     let data = this.state.data
@@ -62,6 +63,7 @@ export default class TodoBox extends React.Component {
     this.setState({ data })
   }
   render() {
+    console.log(this.state.data)
     return (
       <div>
         <div className="well">

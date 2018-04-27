@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 
 module.exports = {
-  context: __dirname + '/react/src',
+  context: __dirname + '/react-todolist/src',
   entry: "./index.js",
   module: {
     loaders: [
@@ -21,7 +21,7 @@ module.exports = {
     ]
   },
   output: {
-    path: __dirname + "/react/dist/",
+    path: __dirname + "/react-todolist/dist/",
     filename: "bundle.js"
   }
 }
