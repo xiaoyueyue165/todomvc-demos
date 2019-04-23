@@ -1,65 +1,65 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<title>Index</title>
+<style>
+  a {
+    text-decoration: none;
+    border-bottom: 1px solid;
+  }
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Template • TodoMVC</title>
-  <link rel="stylesheet" href="./static/base.css">
-  <link rel="stylesheet" href="./static/index.css">
-</head>
+  * {
+    box-sizing: border-box;
+  }
 
-<body>
-  <section class="todoapp">
-    <header class="header">
-      <h1>todos</h1>
-      <input class="new-todo" placeholder="What needs to be done?" autofocus>
-    </header>
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
 
-    <section class="main">
-      <input id="toggle-all" class="toggle-all" type="checkbox">
-      <label for="toggle-all">Mark all as complete</label>
-      <ul class="todo-list">
+  .page {
+    width: 36em;
+    margin: 2em;
+    border: 1px solid #ddd;
+    padding: 0 1em;
+    box-shadow: 3px 3px 6px hsla(0, 0%, 0%, 0.1);
+  }
 
-        <li class="completed">
-          <div class="view">
-            <input class="toggle" type="checkbox" checked>
-            <label>Taste JavaScript</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Create a TodoMVC template">
-        </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox">
-            <label>Buy a unicorn</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" value="Rule the web">
-        </li>
-      </ul>
-    </section>
-    <footer class="footer">
-      <!-- This should be `0 items left` by default -->
-      <span class="todo-count">
-        <strong>0</strong> item left</span>
-      <ul class="filters">
-        <li>
-          <a class="selected" href="#/">All</a>
-        </li>
-        <li>
-          <a href="#/active">Active</a>
-        </li>
-        <li>
-          <a href="#/completed">Completed</a>
-        </li>
-      </ul>
-      <button class="clear-completed">Clear completed</button>
-    </footer>
-  </section>
+  ol>li {
+    padding: .2em .5em;
+  }
 
-  <script src="./static/base.js"></script>
-  <script src="./src/app.js"></script>
-</body>
+  ol>li:hover {
+    background: #ddd;
+  }
+
+  ol>li .difficulty {
+    float: right;
+  }
+</style>
+
+<div class="page">
+  <h1>
+    todomvc demos
+  </h1>
+
+  <p>
+    <ol>
+      <li>
+        <a href="./angular1.x/index.html">
+          angular 1.x
+        </a>
+      </li>
+      <li>
+        <a href="./react-todolist/index.html">
+          react-todolist
+        </a>
+      </li>
+
+    </ol>
+</div>
 
 </html>
