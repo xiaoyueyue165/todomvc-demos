@@ -116,5 +116,4 @@ function demoCtrl($scope, $http) {
 
 	}
 
-
 }
