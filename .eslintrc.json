@@ -1,0 +1,28 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    "semi": 2,
+    "camelcase": 0,
+    "class-methods-use-this": "off",
+    "no-unused-vars": 0,
+    "linebreak-style": 0,
+    "import/prefer-default-export": 0,
+    "no-unused-expressions": 0,
+    "no-case-declarations": 0,
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "no-useless-concat": 0,
+    "import/no-cycle": 0,
+    "import/no-extraneous-dependencies": 0
+  }
+}
