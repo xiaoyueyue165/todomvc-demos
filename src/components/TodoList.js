@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class TodoList extends React.Component {
   constructor(props) {
@@ -33,9 +34,7 @@ class TodoList extends React.Component {
     return data;
   }
   render() {
-    console.log('render');
     const { data, type } = this.props;
-    const { mode } = this.state;
     const result = this.showResulData(data, type);
 
     return (
@@ -45,13 +44,13 @@ class TodoList extends React.Component {
             className={item.isCompleted === true ? 'completed' : ''}
             key={item.id}
           >
-            {item.mode == 'onShow' ? (
-              <div class="view">
+            {item.mode === 'onShow' ? (
+              <div className="view">
                 <input
                   onClick={this.completeItem.bind(this, item.id)}
                   className="toggle"
                   type="checkbox"
-                  checked={item.isCompleted ? 'checked' : ''}
+                  defaultChecked={item.isCompleted ? 'checked' : ''}
                 />
                 <label
                   onDoubleClick={() => this.changeInputMode(item.id, item.mode)}
@@ -67,7 +66,7 @@ class TodoList extends React.Component {
               'Loading...'
             )}
 
-            {item.mode == 'onEdit' ? (
+            {item.mode === 'onEdit' ? (
               <input
                 className="edit"
                 style={{ display: 'block' }}
@@ -84,5 +83,7 @@ class TodoList extends React.Component {
     );
   }
 }
-
+TodoList.propTypes = {
+  data: PropTypes.array.isRequired
+};
 export default TodoList;

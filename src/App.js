@@ -6,18 +6,21 @@ import TodoFilter from './components/TodoFilter';
 import axios from 'axios';
 
 function App() {
-  const [data, setData] = useState([]);
+  const [data, setTodoListData] = useState([]);
   const [text, setInputChange] = useState('');
   const [type, setFilterType] = useState('all');
   // 1. 获取数据并显示到页面中
-  useEffect(async () => {
-    const result = await axios(
-      'https://xiaoyueyue.org/todomvc-demos/static/data.json'
-    );
-    result.data.forEach(v => {
-      v.mode = 'onShow';
-    });
-    setData(result.data);
+  useEffect(() => {
+    async function fetchData() {
+      const result = await axios(
+        'https://xiaoyueyue.org/todomvc-demos/static/data.json'
+      );
+      result.data.forEach(v => {
+        v.mode = 'onShow';
+      });
+      setTodoListData(result.data);
+    }
+    fetchData();
   }, []);
 
   // 2.  添加任务
@@ -33,7 +36,7 @@ function App() {
       mode: 'onShow'
     };
 
-    setData(data.concat(newItem));
+    setTodoListData(data.concat(newItem));
     setInputChange('');
   }
 
@@ -41,10 +44,10 @@ function App() {
   function deleteOne(id) {
     let deleteIndex = data.findIndex(v => v.id === id);
     data.splice(deleteIndex, 1);
-    // setData(data) 异步方法必须传递函数
-    setData(
+    // setTodoListData(data) 异步方法必须传递函数
+    setTodoListData(
       data.filter(function(val) {
-        return val.id != id;
+        return val.id !== id;
       })
     );
   }
@@ -53,7 +56,7 @@ function App() {
     data.forEach(function(item, index) {
       return item.id === id ? (item.isCompleted = !item.isCompleted) : '';
     });
-    setData(
+    setTodoListData(
       data.filter(function(val) {
         return val;
       })
@@ -65,7 +68,7 @@ function App() {
   }
   // 7. 清空已完成任务
   function completedClearn() {
-    setData(
+    setTodoListData(
       data.filter(function(item) {
         return item.isCompleted === false;
       })
@@ -79,7 +82,7 @@ function App() {
         ? (item.isCompleted = false)
         : (item.isCompleted = true);
     });
-    setData(
+    setTodoListData(
       data.filter(function(val) {
         return val;
       })
@@ -91,7 +94,7 @@ function App() {
     data.forEach(function(item, index) {
       return item.id === id ? (item.mode = 'onEdit') : '';
     });
-    setData(
+    setTodoListData(
       data.filter(function(val) {
         return val;
       })
@@ -105,7 +108,7 @@ function App() {
     data.forEach(function(item, index) {
       return item.id === id ? (item.name = val) : '';
     });
-    setData(
+    setTodoListData(
       data.filter(function(val) {
         return val;
       })
@@ -119,7 +122,7 @@ function App() {
     data.forEach(function(item, index) {
       return item.id === id ? (item.mode = 'onShow') : '';
     });
-    setData(
+    setTodoListData(
       data.filter(function(val) {
         return val;
       })
