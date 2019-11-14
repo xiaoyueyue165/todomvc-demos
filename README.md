@@ -1,6 +1,6 @@
 # todolist
 
-> React • TodoMVC
+> Vue • TodoMVC
 
 这仅仅是一个模板，可以直接使用
 
@@ -20,3 +20,4 @@
 
 - https://github.com/tastejs/todomvc
 - https://github.com/tastejs/todomvc-app-template
+- https://www.imooc.com/learn/935
