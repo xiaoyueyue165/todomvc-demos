@@ -64,7 +64,7 @@ class TodoList extends React.Component {
                 ></button>
               </div>
             ) : (
-              ''
+              'Loading...'
             )}
 
             {item.mode == 'onEdit' ? (

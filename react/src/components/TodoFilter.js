@@ -19,7 +19,7 @@ class TodoFilter extends React.Component {
   };
   render() {
     const { type } = this.state;
-    // todo 数量
+    // 6. 计算未完成任务的数量
     const { data } = this.props;
     let todoCount = 0;
     data.forEach(v => {
