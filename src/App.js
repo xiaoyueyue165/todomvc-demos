@@ -9,6 +9,7 @@ function App() {
   const [data, setData] = useState([]);
   const [text, setInputChange] = useState('');
   const [type, setFilterType] = useState('all');
+  // 1. 获取数据并显示到页面中
   useEffect(async () => {
     const result = await axios(
       'https://xiaoyueyue.org/todomvc-demos/static/data.json'
@@ -19,21 +20,24 @@ function App() {
     setData(result.data);
   }, []);
 
+  // 2.  添加任务
   function handleSubmit(event) {
     event.preventDefault();
     if (!text) {
       return;
     }
     const newItem = {
+      id: data[data.length - 1].id + 1,
       name: text,
       isCompleted: false,
-      id: data[data.length - 1].id + 1
+      mode: 'onShow'
     };
 
     setData(data.concat(newItem));
     setInputChange('');
   }
 
+  // 3. 删除任务（单个）
   function deleteOne(id) {
     let deleteIndex = data.findIndex(v => v.id === id);
     data.splice(deleteIndex, 1);
@@ -44,7 +48,7 @@ function App() {
       })
     );
   }
-
+  // 4. 更改任务状态
   function completeOne(id) {
     data.forEach(function(item, index) {
       return item.id === id ? (item.isCompleted = !item.isCompleted) : '';
@@ -55,10 +59,11 @@ function App() {
       })
     );
   }
-
+  // 5. 增加筛选
   function onFilterTodoList(type) {
     setFilterType(type);
   }
+  // 7. 清空已完成任务
   function completedClearn() {
     setData(
       data.filter(function(item) {
@@ -66,10 +71,13 @@ function App() {
       })
     );
   }
-  // 批量更改
+  // 8. 批量更改任务状态
   function doAllCompleted() {
+    let isAllCompleted = data.every(item => item.isCompleted === true);
     data.forEach(function(item, index) {
-      return item.isCompleted === false ? (item.isCompleted = true) : '';
+      return isAllCompleted
+        ? (item.isCompleted = false)
+        : (item.isCompleted = true);
     });
     setData(
       data.filter(function(val) {
@@ -77,7 +85,7 @@ function App() {
       })
     );
   }
-  // 编辑状态切换
+  // 9. - 编辑状态切换
   function changeValMode(id, mode) {
     console.log(id, mode);
     data.forEach(function(item, index) {
@@ -90,7 +98,7 @@ function App() {
     );
     console.log(data);
   }
-  // 编辑模式
+  // - 编辑模式
   function editItemById(id, val) {
     console.log('edit', val);
 
@@ -104,7 +112,7 @@ function App() {
     );
     console.log(data);
   }
-  // 编辑结束
+  // - 编辑结束
   function fnishEdit(id) {
     console.log('编辑结束设置', id);
 
