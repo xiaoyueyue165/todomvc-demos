@@ -1,6 +1,12 @@
 # todomvc-demos
 
-angular1.x，vue，react
+一个开始训练场
+
+## 例子
+
+- [Demo01: Angular1.x](https://github.com/yanyue404/todomvc-demos/tree/master/angular1.x)
+- [Demo02: React](https://github.com/yanyue404/todomvc-demos/tree/react)
+- [Demo03: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
 
 ## 技术点
 
@@ -13,3 +19,8 @@ angular1.x，vue，react
 - 7. 清空已完成任务 
 - 8. 批量更改任务状态 
 - 9. 修改任务名称 
+
+### 参考链接
+
+- https://github.com/tastejs/todomvc
+- https://github.com/tastejs/todomvc-app-template
