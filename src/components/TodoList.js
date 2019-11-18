@@ -1,25 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { toggleTodo, deleteTodo, editModeToggle, editTodo } from '../actions';
 
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      mode: 'onShow'
-    };
-    this.deleteItem = this.deleteItem.bind(this);
-    this.completeItem = this.completeItem.bind(this);
-  }
-  changeInputMode(id, mode) {
-    this.props.changeValMode(id, mode);
-  }
-  deleteItem(id) {
-    this.props.deleteOneById(id);
-  }
-  completeItem(id) {
-    this.props.completeOneById(id);
-  }
-
+class TodoList extends React.PureComponent {
   showResulData(data, type) {
     if (type === 'active') {
       return data.filter(item => {
@@ -34,9 +18,9 @@ class TodoList extends React.Component {
     return data;
   }
   render() {
-    const { data, type } = this.props;
-    const result = this.showResulData(data, type);
-
+    // 1. 获取数据并显示到页面中
+    const { todos, filter } = this.props;
+    const result = this.showResulData(todos, filter);
     return (
       <ul className="todo-list">
         {result.map(item => (
@@ -44,38 +28,33 @@ class TodoList extends React.Component {
             className={item.isCompleted === true ? 'completed' : ''}
             key={item.id}
           >
-            {item.mode === 'onShow' ? (
+            {item.isEdit === false ? (
               <div className="view">
                 <input
-                  onClick={this.completeItem.bind(this, item.id)}
+                  // 4. 更改任务状态
+                  onClick={() => this.props.toggleTodo(item.id)}
                   className="toggle"
                   type="checkbox"
-                  defaultChecked={item.isCompleted ? 'checked' : ''}
+                  readOnly
+                  checked={item.isCompleted ? 'checked' : ''}
                 />
-                <label
-                  onDoubleClick={() => this.changeInputMode(item.id, item.mode)}
-                >
+                <label onDoubleClick={() => this.props.editModeToggle(item.id)}>
                   {item.name}
                 </label>
                 <button
                   className="destroy"
-                  onClick={this.deleteItem.bind(this, item.id)}
+                  // 3. 删除任务（单个）
+                  onClick={() => this.props.deleteTodo(item.id)}
                 ></button>
               </div>
             ) : (
-              'Loading...'
-            )}
-
-            {item.mode === 'onEdit' ? (
               <input
                 className="edit"
                 style={{ display: 'block' }}
                 value={item.name}
-                onChange={e => this.props.editItemById(item.id, e.target.value)}
-                onBlur={() => this.props.fnishEdit(item.id)}
+                onChange={e => this.props.editTodo(item.id, e.target.value)}
+                onBlur={() => this.props.editModeToggle(item.id)}
               />
-            ) : (
-              ''
             )}
           </li>
         ))}
@@ -84,6 +63,19 @@ class TodoList extends React.Component {
   }
 }
 TodoList.propTypes = {
-  data: PropTypes.array.isRequired
+  todos: PropTypes.array.isRequired
 };
-export default TodoList;
+
+const mapStateToProps = state => {
+  return {
+    todos: state.todos,
+    filter: state.visibilityFilter
+  };
+};
+
+export default connect(mapStateToProps, {
+  toggleTodo,
+  deleteTodo,
+  editModeToggle,
+  editTodo
+})(TodoList);

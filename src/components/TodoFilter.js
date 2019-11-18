@@ -1,28 +1,12 @@
 import React from 'react';
-
-class TodoFilter extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      type: 'all'
-    };
-  }
-  onSetFilterType = type => {
-    this.setState(
-      {
-        type: type
-      },
-      () => {
-        this.props.TodoFilter(type);
-      }
-    );
-  };
+import { connect } from 'react-redux';
+import { setTodoFilter, clearCompletedTodo } from '../actions';
+class TodoFilter extends React.PureComponent {
   render() {
-    const { type } = this.state;
     // 6. 计算未完成任务的数量
-    const { data } = this.props;
+    const { todos, filter: type } = this.props;
     let todoCount = 0;
-    data.forEach(v => {
+    todos.forEach(v => {
       return v.isCompleted === false ? (todoCount += 1) : '';
     });
 
@@ -35,7 +19,8 @@ class TodoFilter extends React.Component {
           <li>
             <a
               className={type === 'all' ? 'selected' : ''}
-              onClick={() => this.onSetFilterType('all')}
+              // 5. 增加筛选
+              onClick={() => this.props.setTodoFilter('all')}
             >
               All
             </a>
@@ -43,7 +28,7 @@ class TodoFilter extends React.Component {
           <li>
             <a
               className={type === 'active' ? 'selected' : ''}
-              onClick={() => this.onSetFilterType('active')}
+              onClick={() => this.props.setTodoFilter('active')}
             >
               Active
             </a>
@@ -51,7 +36,7 @@ class TodoFilter extends React.Component {
           <li>
             <a
               className={type === 'completed' ? 'selected' : ''}
-              onClick={() => this.onSetFilterType('completed')}
+              onClick={() => this.props.setTodoFilter('completed')}
             >
               Completed
             </a>
@@ -59,7 +44,8 @@ class TodoFilter extends React.Component {
         </ul>
         <button
           className="clear-completed"
-          onClick={() => this.props.clearComplete()}
+          // 7. 清空已完成任务
+          onClick={() => this.props.clearCompletedTodo()}
         >
           Clear completed
         </button>
@@ -68,4 +54,12 @@ class TodoFilter extends React.Component {
   }
 }
 
-export default TodoFilter;
+const mapStateToProps = state => {
+  return {
+    todos: state.todos,
+    filter: state.visibilityFilter
+  };
+};
+export default connect(mapStateToProps, { setTodoFilter, clearCompletedTodo })(
+  TodoFilter
+);

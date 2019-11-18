@@ -1,6 +1,6 @@
 # todolist
 
-> React • TodoMVC
+> React + Redux • TodoMVC
 
 这仅仅是一个模板，可以直接使用
 
