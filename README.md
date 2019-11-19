@@ -6,8 +6,9 @@
 
 - [Demo01: Angular1.x](https://github.com/yanyue404/todomvc-demos/tree/master/angular1.x)
 - [Demo02: React](https://github.com/yanyue404/todomvc-demos/tree/react)
-- [Demo03: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
-- [Demo04: React + Redux](https://github.com/yanyue404/todomvc-demos/tree/react+redux)
+- [Demo03: React + Redux](https://github.com/yanyue404/todomvc-demos/tree/react+redux)
+- [Demo04: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
+- [Demo05: Vue + Vuex](https://github.com/yanyue404/todomvc-demos/tree/vue+vuex)
 
 ## 技术点
 
