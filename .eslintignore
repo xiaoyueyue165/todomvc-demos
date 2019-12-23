@@ -1,7 +1,0 @@
-node_modules
-src/utils
-# build
-build/
-
-# dist
-dist/
