@@ -9,6 +9,7 @@
 - [Demo03: React + Redux](https://github.com/yanyue404/todomvc-demos/tree/react+redux)
 - [Demo04: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
 - [Demo05: Vue + Vuex](https://github.com/yanyue404/todomvc-demos/tree/vue+vuex)
+- [Demo06: React + typescript](https://github.com/yanyue404/todomvc-demos/tree/react+typescript)
 
 ## 技术点
 
