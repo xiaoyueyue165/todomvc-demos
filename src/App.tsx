@@ -1,15 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import "./static/base.css";
 import "./static/index.css";
 import TodoList from "./components/TodoList";
 import TodoFilter from "./components/TodoFilter";
 import axios from "axios";
-import { Todo, TodoListType, filterType } from "./type";
+import { Todo, TodoListType, filterType } from "./types/index";
 
 function App() {
   const [data, setTodoListData] = useState<any>([]);
   const [text, setInputChange] = useState("");
   const [type, setFilterType] = useState<any>("all");
+  const textInput = createRef<HTMLInputElement>();
   // 1. 获取数据并显示到页面中
   useEffect(() => {
     async function fetchData() {
@@ -27,6 +28,7 @@ function App() {
   // 2.  添加任务
   function handleSubmit(event: any) {
     event.preventDefault();
+    if (textInput.current === null) return;
     if (!text) {
       return;
     }
@@ -38,7 +40,7 @@ function App() {
     };
 
     setTodoListData((prevState: TodoListType) => [...prevState, newItem]);
-    setInputChange("");
+    textInput.current.value = "";
   }
 
   // 3. 删除任务（单个）
@@ -52,16 +54,73 @@ function App() {
   }
   // 4. 更改任务状态
   function completeOne(id: string) {
-    let current = data.find((v: Todo) => v.id === id);
-    current.isCompleted = !current.isCompleted;
     setTodoListData((prevState: TodoListType) =>
-      Object.assign(prevState, current)
+      prevState.map(v => {
+        if (v.id === id) {
+          v.isCompleted = !v.isCompleted;
+        }
+        return v;
+      })
     );
   }
 
   // 5. 增加筛选
   function onFilterTodoList(type: filterType) {
     setFilterType(type);
+  }
+
+  // 7. 清空已完成任务
+  function completedClearn() {
+    setTodoListData(data.filter((item: Todo) => item.isCompleted === false));
+  }
+
+  // 8. 批量更改任务状态
+  function toggleAllTodos() {
+    let isAllCompleted = data.every((item: Todo) => item.isCompleted === true);
+    setTodoListData((prevState: TodoListType) =>
+      prevState.map((v: Todo) => {
+        if (isAllCompleted) {
+          v.isCompleted = false;
+        } else {
+          v.isCompleted = true;
+        }
+        return v;
+      })
+    );
+  }
+  // 9. - 编辑状态切换
+  function changeValMode(id: string, mode: string) {
+    setTodoListData((prevState: TodoListType) =>
+      prevState.map((v: Todo) => {
+        if (v.id === id) {
+          v.mode = "onEdit";
+        }
+        return v;
+      })
+    );
+  }
+
+  // - 编辑模式
+  function editItemById(id: string, val: string) {
+    setTodoListData((prevState: TodoListType) =>
+      prevState.map((v: Todo) => {
+        if (v.id === id) {
+          v.name = val;
+        }
+        return v;
+      })
+    );
+  }
+  // - 编辑结束
+  function fnishEdit(id: string) {
+    setTodoListData((prevState: TodoListType) =>
+      prevState.map((v: Todo) => {
+        if (v.id === id) {
+          v.mode = "onShow";
+        }
+        return v;
+      })
+    );
   }
   return (
     <div className="todoapp">
@@ -72,22 +131,35 @@ function App() {
             className="new-todo"
             placeholder="What needs to be done?"
             autoFocus
+            ref={textInput}
             onChange={e => setInputChange(e.target.value)}
           />
         </form>
         <section className="main">
-          <input id="toggle-all" className="toggle-all" type="checkbox" />
+          <input
+            id="toggle-all"
+            className="toggle-all"
+            type="checkbox"
+            onClick={toggleAllTodos}
+          />
           <label htmlFor="toggle-all">Mark all as complete</label>
           <TodoList
             data={data}
             type={type}
             deleteOneById={deleteOne}
             completeOneById={completeOne}
+            changeValMode={changeValMode}
+            editItemById={editItemById}
+            fnishEdit={fnishEdit}
           />
         </section>
       </header>
 
-      <TodoFilter data={data} TodoFilter={onFilterTodoList} />
+      <TodoFilter
+        data={data}
+        TodoFilter={onFilterTodoList}
+        clearComplete={completedClearn}
+      />
     </div>
   );
 }

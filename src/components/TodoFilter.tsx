@@ -1,8 +1,9 @@
 import React from "react";
-import { Todo, TodoListType, filterType } from "../type";
+import { Todo, TodoListType, filterType } from "../types/index";
 type MyProps = {
   data: TodoListType;
   TodoFilter: (type: string) => void;
+  clearComplete: () => void;
 };
 type MyState = {
   type: filterType;
@@ -56,7 +57,12 @@ class TodoFilter extends React.Component<MyProps, MyState> {
             </a>
           </li>
         </ul>
-        <button className="clear-completed">Clear completed</button>
+        <button
+          className="clear-completed"
+          onClick={() => this.props.clearComplete()}
+        >
+          Clear completed
+        </button>
       </footer>
     );
   }

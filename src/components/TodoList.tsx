@@ -1,10 +1,13 @@
 import React from "react";
-import { Todo, TodoListType, filterType } from "../type";
+import { Todo, TodoListType, filterType } from "../types/index";
 type MyProps = {
   data: TodoListType;
   type: filterType;
   deleteOneById: (id: string) => void;
   completeOneById: (id: string) => void;
+  changeValMode: (id: string, mode: string) => void;
+  editItemById: (id: string, e: any) => void;
+  fnishEdit: (id: string) => void;
 };
 type MyState = {
   mode: "onShow" | "onEdit";
@@ -49,16 +52,22 @@ class TodoList extends React.Component<MyProps, MyState> {
                   className="toggle"
                   type="checkbox"
                   onClick={this.completeItem.bind(this, item.id)}
-                  defaultChecked={item.isCompleted ? true : false}
+                  checked={item.isCompleted ? true : false}
                 />
-                <label>{item.name}</label>
+                <label
+                  onDoubleClick={() =>
+                    this.props.changeValMode(item.id, item.mode)
+                  }
+                >
+                  {item.name}
+                </label>
                 <button
                   className="destroy"
                   onClick={this.deleteItem.bind(this, item.id)}
                 ></button>
               </div>
             ) : (
-              "Loading..."
+              ""
             )}
 
             {item.mode === "onEdit" ? (
@@ -66,6 +75,8 @@ class TodoList extends React.Component<MyProps, MyState> {
                 className="edit"
                 style={{ display: "block" }}
                 value={item.name}
+                onChange={e => this.props.editItemById(item.id, e.target.value)}
+                onBlur={() => this.props.fnishEdit(item.id)}
               />
             ) : (
               ""
