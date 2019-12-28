@@ -30,4 +30,5 @@
 
 - https://github.com/tastejs/todomvc
 - https://github.com/tastejs/todomvc-app-template
+- https://github.com/themaxsandelin/todo
 - https://stackoverflow.com/questions/462537/overriding-important-style
