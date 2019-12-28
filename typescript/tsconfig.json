@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "system",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outFile": "out/app.js",
+    "sourceMap": true,
+    "baseUrl": "",
+    "paths": {
+      "axios": ["https://unpkg.com/axios/dist/axios.min.js"] // 此处映射是相对于"baseUrl"
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "axios"]
+}

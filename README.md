@@ -11,6 +11,7 @@
 - [Demo05: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
 - [Demo06: Vue + Vuex](https://github.com/yanyue404/todomvc-demos/tree/vue+vuex)
 - [Demo07: React + typescript](https://github.com/yanyue404/todomvc-demos/tree/react+typescript)
+- [Demo08: TypeScript](https://github.com/yanyue404/todomvc-demos/tree/typescript)
 
 ## 技术点
 
