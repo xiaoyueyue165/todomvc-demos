@@ -4,12 +4,13 @@
 
 ## 例子
 
-- [Demo01: Angular1.x](https://github.com/yanyue404/todomvc-demos/tree/master/angular1.x)
-- [Demo02: React](https://github.com/yanyue404/todomvc-demos/tree/react)
-- [Demo03: React + Redux](https://github.com/yanyue404/todomvc-demos/tree/react+redux)
-- [Demo04: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
-- [Demo05: Vue + Vuex](https://github.com/yanyue404/todomvc-demos/tree/vue+vuex)
-- [Demo06: React + typescript](https://github.com/yanyue404/todomvc-demos/tree/react+typescript)
+- [Demo01: JavaScript](https://github.com/yanyue404/todomvc-demos/tree/master/javascript)
+- [Demo02: Angular1.x](https://github.com/yanyue404/todomvc-demos/tree/master/angular1.x)
+- [Demo03: React](https://github.com/yanyue404/todomvc-demos/tree/react)
+- [Demo04: React + Redux](https://github.com/yanyue404/todomvc-demos/tree/react+redux)
+- [Demo05: Vue](https://github.com/yanyue404/todomvc-demos/tree/vue)
+- [Demo06: Vue + Vuex](https://github.com/yanyue404/todomvc-demos/tree/vue+vuex)
+- [Demo07: React + typescript](https://github.com/yanyue404/todomvc-demos/tree/react+typescript)
 
 ## 技术点
 
